@@ -23,9 +23,87 @@ class Program
         Fecha fecha_dos = new Fecha(7, 5, 2022);
 
         System.Console.WriteLine("\nSegunda fecha - Envio como parametro la estructura del tipo FECHA\n");
-        Mostrar_Est_Fecha(fecha_dos);
+        Mostrar_Fecha(fecha_dos);
 
-        estado = Validar_Est_Fecha(fecha_dos);
+        estado = Validar_Fecha(fecha_dos);
+
+        Procesar_Mensaje_Validar_Fecha(estado, fecha_dos);
+
+        if (estado != 0)
+        {
+            Environment.Exit(0);
+        }
+
+        Fecha fecha_tres = new Fecha(23, 6, 2022);
+
+        System.Console.WriteLine("\nTercera fecha - Envio como parametro un puntero a la estructura del tipo FECHA\n");
+        Mostrar_Fecha(fecha_tres);
+
+        estado = Validar_Fecha(fecha_tres);
+
+        Procesar_Mensaje_Validar_Fecha(estado, fecha_tres);
+
+        if (estado != 0)
+        {
+            Environment.Exit(0);
+        }
+
+        System.Console.WriteLine("\nEnvio como parametro los tres atributos de fecha UNO y envio como parametro los tres atributos fecha DOS\n");
+        estado = Comparar_Fecha(fecha_uno.dd, fecha_uno.mm, fecha_uno.aaaa, fecha_dos.dd, fecha_dos.mm, fecha_dos.aaaa);
+
+        if (estado == 1)
+        {
+            System.Console.WriteLine($"Primera fecha {fecha_uno.dd}/{fecha_uno.mm}/{fecha_uno.aaaa} mayor segunda fecha {fecha_dos.dd}/{fecha_dos.mm}/{fecha_dos.aaaa}");
+        }
+        else
+        {
+            if (estado == -1)
+            {
+                System.Console.WriteLine($"Segunda fecha {fecha_dos.dd}/{fecha_dos.mm}/{fecha_dos.aaaa} mayor primera fecha {fecha_uno.dd}/{fecha_uno.mm}/{fecha_uno.aaaa}");
+            }
+            else
+            {
+                System.Console.WriteLine($"Primera fecha {fecha_uno.dd}/{fecha_uno.mm}/{fecha_uno.aaaa} igual segunda fecha {fecha_dos.dd}/{fecha_dos.mm}/{fecha_dos.aaaa}");
+            }
+        }
+
+        System.Console.WriteLine("\nEnvio como parametro la estructura fecha UNO y envio como parametro la estructura fecha TRES\n");
+        estado = Comparar_Fecha(fecha_uno, fecha_tres);
+
+        if (estado == 1)
+        {
+            System.Console.WriteLine($"Primera fecha {fecha_uno.dd}/{fecha_uno.mm}/{fecha_uno.aaaa} mayor tercera fecha {fecha_tres.dd}/{fecha_tres.mm}/{fecha_tres.aaaa}");
+        }
+        else
+        {
+            if (estado == -1)
+            {
+                System.Console.WriteLine($"Tercera fecha {fecha_tres.dd}/{fecha_tres.mm}/{fecha_tres.aaaa} mayor primera fecha {fecha_uno.dd}/{fecha_uno.mm}/{fecha_uno.aaaa}");
+            }
+            else
+            {
+                System.Console.WriteLine($"Primera fecha {fecha_uno.dd}/{fecha_uno.mm}/{fecha_uno.aaaa} igual tercera fecha {fecha_tres.dd}/{fecha_tres.mm}/{fecha_tres.aaaa}");
+            }
+        }
+
+        System.Console.WriteLine("\nEnvio el puntero como parametro de la estructura fecha DOS y envio como parametro el puntero de la estructura fecha TRES\n");
+        estado = Comparar_Fecha(fecha_dos, fecha_tres);
+
+        if (estado == 1)
+        {
+            System.Console.WriteLine($"Segunda fecha {fecha_dos.dd}/{fecha_dos.mm}/{fecha_dos.aaaa} mayor tercera fecha {fecha_tres.dd}/{fecha_tres.mm}/{fecha_tres.aaaa}");
+        }
+        else
+        {
+            if (estado == -1)
+            {
+                System.Console.WriteLine($"Tercera fecha {fecha_tres.dd}/{fecha_tres.mm}/{fecha_tres.aaaa} mayor segunda fecha {fecha_dos.dd}/{fecha_dos.mm}/{fecha_dos.aaaa}");
+            }
+            else
+            {
+                System.Console.WriteLine($"Segunda fecha {fecha_dos.dd}/{fecha_dos.mm}/{fecha_dos.aaaa} igual tercera fecha {fecha_tres.dd}/{fecha_tres.mm}/{fecha_tres.aaaa}");
+            }
+        }
     }
 
     // Servcio
@@ -33,11 +111,7 @@ class Program
     {
         FechaEstatic.Procesar_Mostrar_Fecha(dd, mm, aaaa);
     }
-    public static void Mostrar_Est_Fecha(Fecha fecha)
-    {
-        FechaEstatic.Procesar_Mostrar_Fecha(fecha.dd, fecha.mm, fecha.aaaa);
-    }
-    public static void Mostrar_Pun_Est_Fecha(ref Fecha fecha)
+    public static void Mostrar_Fecha(Fecha fecha)
     {
         FechaEstatic.Procesar_Mostrar_Fecha(fecha.dd, fecha.mm, fecha.aaaa);
     }
@@ -45,11 +119,7 @@ class Program
     {
         return FechaEstatic.Procesar_Validar_Fecha(dd, mm, aaaa);
     }
-    public static int Validar_Est_Fecha(Fecha fecha)
-    {
-        return FechaEstatic.Procesar_Validar_Fecha(fecha.dd, fecha.mm, fecha.aaaa);
-    }
-    public static int Validar_Pun_Est_Fecha(ref Fecha fecha)
+    public static int Validar_Fecha(Fecha fecha)
     {
         return FechaEstatic.Procesar_Validar_Fecha(fecha.dd, fecha.mm, fecha.aaaa);
     }
